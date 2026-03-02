@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://b52gfnw2lsc6s"]
+
+[ext_resource type="Script" uid="uid://7p6g42fyojfh" path="res://Scenes/basic_elf.gd" id="1_7l41g"]
+[ext_resource type="Texture2D" uid="uid://dalobgng5efhj" path="res://Art/Elf.png" id="1_vrfjs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7l41g"]
+atlas = ExtResource("1_vrfjs")
+region = Rect2(0, 0, 14, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wc1p"]
+atlas = ExtResource("1_vrfjs")
+region = Rect2(14, 0, 14, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jfji1"]
+atlas = ExtResource("1_vrfjs")
+region = Rect2(28, 0, 14, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fmhb"]
+atlas = ExtResource("1_vrfjs")
+region = Rect2(0, 20, 14, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwnj6"]
+atlas = ExtResource("1_vrfjs")
+region = Rect2(14, 20, 14, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p45mn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7l41g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6wc1p")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jfji1")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2fmhb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwnj6")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o6cf2"]
+height = 36.0
+
+[node name="BasicElf" type="CharacterBody2D" unique_id=1781980710]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_7l41g")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=799657163]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_p45mn")
+animation = &"run"
+frame_progress = 0.81527114
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1687423935]
+position = Vector2(-2, 1)
+shape = SubResource("CapsuleShape2D_o6cf2")
+
+[node name="ViewingArea" type="Node2D" parent="." unique_id=1050243955]
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=2146091061]
+color = Color(1, 0, 0, 0.5176471)

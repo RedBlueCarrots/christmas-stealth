@@ -1,0 +1,166 @@
+[gd_scene format=3 uid="uid://dmfdpuoan6bwc"]
+
+[ext_resource type="Texture2D" uid="uid://dglxn1gi5qp8e" path="res://Art/Santa_all.png" id="1_7j1t1"]
+[ext_resource type="Script" uid="uid://cnkrin21ncj5r" path="res://Scenes/santa.gd" id="1_k21bw"]
+[ext_resource type="Texture2D" uid="uid://dme8pgwf3xsy8" path="res://Art/santabag.png" id="3_apxct"]
+[ext_resource type="Texture2D" uid="uid://b1ogk8v5prcst" path="res://Art/snowflake.png" id="4_mux0t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k21bw"]
+atlas = ExtResource("1_7j1t1")
+region = Rect2(0, 0, 16, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_apxct"]
+atlas = ExtResource("1_7j1t1")
+region = Rect2(16, 0, 16, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mux0t"]
+atlas = ExtResource("1_7j1t1")
+region = Rect2(16, 26, 16, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_auslg"]
+atlas = ExtResource("1_7j1t1")
+region = Rect2(32, 26, 16, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlgba"]
+atlas = ExtResource("1_7j1t1")
+region = Rect2(0, 52, 16, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_abyut"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k21bw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_apxct")
+}],
+"loop": true,
+"name": &"idle_front",
+"speed": 1.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mux0t")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_auslg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlgba")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ro6ks"]
+radius = 11.0
+height = 48.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k21bw"]
+size = Vector2(20, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_abyut"]
+atlas = ExtResource("1_7j1t1")
+region = Rect2(0, 0, 16, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ro6ks"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_abyut")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Curve" id="Curve_auslg"]
+_data = [Vector2(0.30405408, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_yfmg0"]
+curve = SubResource("Curve_auslg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qlgba"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(5, 20, 1)
+spread = 180.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, 20, 0)
+color = Color(0.65882355, 0.92941177, 0.46666667, 1)
+alpha_curve = SubResource("CurveTexture_yfmg0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_abyut"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(5, 20, 1)
+spread = 180.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, 20, 0)
+color = Color(0.3529412, 0.47058824, 0.5019608, 1)
+alpha_curve = SubResource("CurveTexture_yfmg0")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_apxct"]
+size = Vector2(39, 49)
+
+[node name="Santa" type="CharacterBody2D" unique_id=1293030325 groups=["Santa"]]
+texture_filter = 1
+script = ExtResource("1_k21bw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=805498068]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_abyut")
+animation = &"run"
+frame_progress = 0.37521678
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1968804022]
+visible = false
+position = Vector2(0, 3.05)
+shape = SubResource("CapsuleShape2D_ro6ks")
+
+[node name="Inner" type="ShapeCast2D" parent="." unique_id=212169637]
+visible = false
+shape = SubResource("RectangleShape2D_k21bw")
+target_position = Vector2(0, 0)
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1124737868]
+visible = false
+modulate = Color(0.182, 0.31080005, 0.35, 0.5921569)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ro6ks")
+
+[node name="Bag" type="Sprite2D" parent="." unique_id=1610220081]
+z_index = -1
+scale = Vector2(2, 2)
+texture = ExtResource("3_apxct")
+offset = Vector2(-5, 5)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Bag" unique_id=9491888]
+z_index = -1
+position = Vector2(-8.5, 4.5)
+amount = 14
+texture = ExtResource("4_mux0t")
+process_material = SubResource("ParticleProcessMaterial_qlgba")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Bag" unique_id=86165396]
+z_index = -1
+position = Vector2(-8.5, 4.5)
+amount = 14
+texture = ExtResource("4_mux0t")
+process_material = SubResource("ParticleProcessMaterial_abyut")
+
+[node name="Kidnap" type="Area2D" parent="." unique_id=1685232285]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Kidnap" unique_id=1202254862]
+position = Vector2(-1.5, 2.5)
+shape = SubResource("RectangleShape2D_apxct")

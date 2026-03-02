@@ -1,0 +1,66 @@
+[gd_scene format=4 uid="uid://cidsc8ondxuie"]
+
+[ext_resource type="PackedScene" uid="uid://brwls7sejwus2" path="res://Scenes/Backrounds/background_1.tscn" id="1_gdiot"]
+[ext_resource type="Texture2D" uid="uid://djscmpsielxj1" path="res://Art/tiles.png" id="2_08bvw"]
+[ext_resource type="PackedScene" uid="uid://dmfdpuoan6bwc" path="res://Scenes/santa.tscn" id="3_08bvw"]
+[ext_resource type="PackedScene" uid="uid://b52gfnw2lsc6s" path="res://Scenes/basic_elf.tscn" id="4_1kfl4"]
+[ext_resource type="PackedScene" uid="uid://b2tvoiceuyl3y" path="res://Scenes/magic_elf.tscn" id="5_1h1qs"]
+[ext_resource type="PackedScene" uid="uid://5t2noacxp8y1" path="res://Scenes/reindeer.tscn" id="6_8issk"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1kfl4"]
+texture = ExtResource("2_08bvw")
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:0/0/terrains_peering_bit/right_side = 0
+0:0/0/terrains_peering_bit/left_side = 0
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0/terrains_peering_bit/left_side = 0
+0:1/0 = 0
+0:1/0/terrain_set = 0
+0:1/0/terrain = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0/terrains_peering_bit/right_side = 0
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -8, 8, -0.17985725, 8, 8, -8, 8, -8, -0.8992939)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -8, 0, -8, 8, 0, 8, 8, -4, 8)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -8, 4, -8, 4, 8, -8, 8, -8, 0)
+
+[sub_resource type="TileSet" id="TileSet_1h1qs"]
+physics_layer_0/collision_layer = 3
+physics_layer_0/collision_mask = 3
+terrain_set_0/mode = 2
+terrain_set_0/terrain_0/name = "Terrain 0"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/0 = SubResource("TileSetAtlasSource_1kfl4")
+
+[node name="Node2D" type="Node2D" unique_id=341271968]
+
+[node name="Background1" parent="." unique_id=52199564 instance=ExtResource("1_gdiot")]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1559656078]
+texture_filter = 1
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAAJABEAAAAAAAAAAAAIABEAAAAAAAAAAAAHABEAAAAAAAAAAAAGABEAAAAAAAAAAAAFABEAAAAAAAAAAAAEABEAAAAAAAAAAAADABEAAAAAAAAAAAACABEAAAAAAAAAAAABABEAAAAAAAAAAAAAABEAAAAAAAEAAAAPABMAAAAAAAAAAAAOABMAAAAAAAEAAAANABIAAAABAAAAAAAMABIAAAAAAAEAAAALABEAAAABAAAAAAAKABEAAAAAAAAAAAAVABMAAAAAAAAAAAAUABMAAAAAAAAAAAATABMAAAAAAAAAAAASABMAAAAAAAAAAAARABMAAAAAAAAAAAAQABMAAAAAAAAAAAAeABEAAAABAAAAAAAdABEAAAAAAAEAAAAcABIAAAABAAAAAAAbABIAAAAAAAAAAAAaABIAAAAAAAAAAAAZABIAAAAAAAEAAAAYABMAAAABAAAAAAAXABMAAAAAAAAAAAAWABMAAAAAAAAAAAASAA0AAAABAAAAAAARAA0AAAAAAAAAAAAQAA0AAAAAAAAAAAAPAA0AAAAAAAEAAAAAABAAAAAAAAIAAAABABAAAAABAAIAAAASABIAAAABAAEAAAATABIAAAABAAEAAAARABIAAAAAAAIAAAAUABIAAAABAAIAAAA=")
+tile_set = SubResource("TileSet_1h1qs")
+
+[node name="Santa" parent="." unique_id=1293030325 instance=ExtResource("3_08bvw")]
+position = Vector2(54, 53)
+
+[node name="BasicElf" parent="." unique_id=1781980710 instance=ExtResource("4_1kfl4")]
+position = Vector2(128, 418)
+trained_sequence = "[[(530.734, 588.9337), \"L\"], [(472.3987, 588.9337), \"J\"], [(401.2406, 556.9337), \"J\"], [(68.00028, 524.9984), \"R\"]]"
+
+[node name="MagicElf" parent="." unique_id=129266124 instance=ExtResource("5_1h1qs")]
+position = Vector2(495, 383)
+speed = 50
+trained_sequence = "[[(587.1687, 396.9337), \"L\"], [(503.1655, 396.9337), \"R\"], [(595.3325, 396.9337), \"L\"], [(485.6626, 396.9337), \"R\"], [(591.8293, 396.9337), \"L\"], [(568.4956, 396.9337), \"J\"], [(489.1583, 396.9337), \"R\"], [(512.4914, 396.9337), \"J\"], [(596.4941, 396.9337), \"L\"], [(539.3264, 396.9337), \"J\"], [(493.8249, 396.9337), \"R\"], [(550.991, 396.9337), \"J\"], [(595.3263, 396.9337), \"L\"], [(567.3258, 396.9337), \"J\"], [(503.1551, 396.9337), \"R\"]]"
+
+[node name="Reindeer" parent="." unique_id=1783498457 instance=ExtResource("6_8issk")]
+position = Vector2(481, 550)

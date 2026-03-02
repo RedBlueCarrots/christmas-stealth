@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://5t2noacxp8y1"]
+
+[ext_resource type="Texture2D" uid="uid://1x0mt7i7aadv" path="res://Art/Reindeer.png" id="1_qmufe"]
+[ext_resource type="Script" uid="uid://dix7mq28bj3g6" path="res://Scenes/reindeer.gd" id="1_t5hc7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5hc7"]
+atlas = ExtResource("1_qmufe")
+region = Rect2(0, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56kb8"]
+atlas = ExtResource("1_qmufe")
+region = Rect2(14, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvaqo"]
+atlas = ExtResource("1_qmufe")
+region = Rect2(0, 14, 14, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fkkp1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5hc7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_56kb8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvaqo")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bicmu"]
+size = Vector2(22, 28)
+
+[node name="Reindeer" type="CharacterBody2D" unique_id=1783498457]
+texture_filter = 1
+script = ExtResource("1_t5hc7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1178156012]
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_fkkp1")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1263732442]
+position = Vector2(-1, 0)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_bicmu")
+
+[node name="Right" type="RayCast2D" parent="." unique_id=1505466738]
+target_position = Vector2(20, 0)
+
+[node name="Left" type="RayCast2D" parent="." unique_id=1557046095]
+target_position = Vector2(-20, 0)
