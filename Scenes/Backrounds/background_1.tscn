@@ -2,6 +2,22 @@
 
 [ext_resource type="Texture2D" uid="uid://dn2wwxym2vrly" path="res://Art/Background1.png" id="1_41jmm"]
 
+[sub_resource type="Gradient" id="Gradient_e0icv"]
+colors = PackedColorArray(0.18039216, 0.22745098, 0.2627451, 1, 0.18039216, 0.22745098, 0.2627451, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_v84we"]
+gradient = SubResource("Gradient_e0icv")
+width = 1000
+height = 750
+
+[sub_resource type="Gradient" id="Gradient_3po2h"]
+colors = PackedColorArray(0.19607843, 0.42745098, 0.25882354, 1, 0.19607843, 0.42745098, 0.25882354, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_e0icv"]
+gradient = SubResource("Gradient_3po2h")
+width = 1000
+height = 750
+
 [sub_resource type="Gradient" id="Gradient_41jmm"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 
@@ -16,49 +32,47 @@ emission_box_extents = Vector3(500, 1, 1)
 direction = Vector3(0, 1, 0)
 initial_velocity_min = 50.0
 initial_velocity_max = 120.0
-gravity = Vector3(0, 98, 0)
+gravity = Vector3(0, 47, 0)
 scale_min = 10.0
 scale_max = 10.0
 collision_mode = 2
 collision_use_scale = true
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_41jmm"]
-polygon = PackedVector2Array(42, 128, 178, 102, 304, 87, 452, 88, 789, 83, 959, 87, 1045, 125, 1642, 233, -617, 213)
-
-[sub_resource type="Gradient" id="Gradient_3po2h"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_e0icv"]
-gradient = SubResource("Gradient_3po2h")
-width = 1000
-height = 750
+polygon = PackedVector2Array(1, 1065, 692, 1056, 1001, 1060, 1008, 1174, -5, 1184)
 
 [node name="Background1" type="Node2D" unique_id=52199564]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=463882193]
-modulate = Color(1, 1, 1, 0.7294118)
 z_index = -10
 texture_filter = 1
 scale = Vector2(5, 5)
 texture = ExtResource("1_41jmm")
 centered = false
 
+[node name="Sprite2D3" type="Sprite2D" parent="Sprite2D" unique_id=1765897895]
+position = Vector2(0, -150)
+scale = Vector2(0.19999999, 0.19999999)
+texture = SubResource("GradientTexture2D_v84we")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="Sprite2D" unique_id=1723048439]
+position = Vector2(0, 150)
+scale = Vector2(0.19999999, 0.19999999)
+texture = SubResource("GradientTexture2D_e0icv")
+centered = false
+
 [node name="CPUParticles2D" type="GPUParticles2D" parent="." unique_id=1360968608]
 z_index = -9
-position = Vector2(500, 0)
-amount = 240
+position = Vector2(500, -757)
+amount = 360
 texture = SubResource("GradientTexture1D_3po2h")
-lifetime = 5.0
-preprocess = 2.0
-visibility_rect = Rect2(-500, -500, 1000, 1000)
+lifetime = 8.0
+preprocess = 5.0
+visibility_rect = Rect2(-1000, 0, 2000, 1500)
 process_material = SubResource("ParticleProcessMaterial_e0icv")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=1047409340]
 z_index = -1286
-position = Vector2(-45, 202)
+position = Vector2(-7, -736)
 occluder = SubResource("OccluderPolygon2D_41jmm")
-
-[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1614283229]
-z_index = -11
-texture = SubResource("GradientTexture2D_e0icv")
-centered = false

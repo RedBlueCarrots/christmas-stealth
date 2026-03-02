@@ -110,6 +110,9 @@ alpha_curve = SubResource("CurveTexture_yfmg0")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_apxct"]
 size = Vector2(39, 49)
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_mux0t"]
+polygon = PackedVector2Array(-9, 19, 9, 20, 7, -3, -5, -4)
+
 [node name="Santa" type="CharacterBody2D" unique_id=1293030325 groups=["Santa"]]
 texture_filter = 1
 script = ExtResource("1_k21bw")
@@ -164,3 +167,9 @@ collision_mask = 32
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Kidnap" unique_id=1202254862]
 position = Vector2(-1.5, 2.5)
 shape = SubResource("RectangleShape2D_apxct")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1145479798]
+position_smoothing_enabled = true
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=363197295]
+occluder = SubResource("OccluderPolygon2D_mux0t")

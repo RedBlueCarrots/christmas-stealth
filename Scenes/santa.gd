@@ -41,8 +41,10 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	if velocity.length_squared() > 100:
 		saved_vel = velocity
+	var axis = Input.get_vector("left", "right", "jump", "down")
+	if axis != Vector2.ZERO:
+		locked_vel = axis
 	if Input.is_action_just_pressed("teleport"):
-		locked_vel = saved_vel
 		$Sprite2D.visible = true
 	recal_raycasts()
 	if Input.is_action_just_released("teleport"):

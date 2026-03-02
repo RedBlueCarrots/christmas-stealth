@@ -57,7 +57,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o6cf2"]
-height = 36.0
+height = 26.0
 
 [node name="BasicElf" type="CharacterBody2D" unique_id=1781980710]
 collision_layer = 16
@@ -72,7 +72,7 @@ animation = &"run"
 frame_progress = 0.81527114
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1687423935]
-position = Vector2(-2, 1)
+position = Vector2(-2, 6)
 shape = SubResource("CapsuleShape2D_o6cf2")
 
 [node name="ViewingArea" type="Node2D" parent="." unique_id=1050243955]

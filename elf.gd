@@ -36,7 +36,7 @@ func check_training():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func check_move_data():
 	var next_spot = move_data[next_instruction]
-	if position.distance_squared_to(next_spot[0]) < 100:
+	if position.distance_squared_to(next_spot[0]) < 25:
 		if next_spot[1] == "J":
 			velocity.y = -JUMP
 		elif next_spot[1] == "L":
