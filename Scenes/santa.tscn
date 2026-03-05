@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dglxn1gi5qp8e" path="res://Art/Santa_all.png" id="1_7j1t1"]
 [ext_resource type="Script" uid="uid://cnkrin21ncj5r" path="res://Scenes/santa.gd" id="1_k21bw"]
 [ext_resource type="Texture2D" uid="uid://dme8pgwf3xsy8" path="res://Art/santabag.png" id="3_apxct"]
+[ext_resource type="Texture2D" uid="uid://1x0mt7i7aadv" path="res://Art/Reindeer.png" id="3_auslg"]
 [ext_resource type="Texture2D" uid="uid://b1ogk8v5prcst" path="res://Art/snowflake.png" id="4_mux0t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k21bw"]
@@ -58,9 +59,59 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ro6ks"]
+atlas = ExtResource("3_auslg")
+region = Rect2(0, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f10yi"]
+atlas = ExtResource("3_auslg")
+region = Rect2(0, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixncd"]
+atlas = ExtResource("3_auslg")
+region = Rect2(14, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nel3q"]
+atlas = ExtResource("3_auslg")
+region = Rect2(0, 14, 14, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3eiuu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ro6ks")
+}],
+"loop": true,
+"name": &"idle_front",
+"speed": 1.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f10yi")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixncd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nel3q")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ro6ks"]
 radius = 11.0
 height = 48.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kcpm1"]
+radius = 11.0
+height = 26.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k21bw"]
 size = Vector2(20, 50)
@@ -115,6 +166,7 @@ polygon = PackedVector2Array(-9, 19, 9, 20, 7, -3, -5, -4)
 
 [node name="Santa" type="CharacterBody2D" unique_id=1293030325 groups=["Santa"]]
 texture_filter = 1
+collision_layer = 129
 script = ExtResource("1_k21bw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=805498068]
@@ -124,10 +176,20 @@ sprite_frames = SubResource("SpriteFrames_abyut")
 animation = &"run"
 frame_progress = 0.37521678
 
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=679338935]
+texture_filter = 1
+position = Vector2(1, 13)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_3eiuu")
+animation = &"idle_front"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1968804022]
-visible = false
-position = Vector2(0, 3.05)
+position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_ro6ks")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=801046418]
+position = Vector2(0, 14)
+shape = SubResource("CapsuleShape2D_kcpm1")
 
 [node name="Inner" type="ShapeCast2D" parent="." unique_id=212169637]
 visible = false
@@ -169,6 +231,9 @@ position = Vector2(-1.5, 2.5)
 shape = SubResource("RectangleShape2D_apxct")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1145479798]
+limit_left = 0
+limit_right = 2222
+limit_bottom = 1111
 position_smoothing_enabled = true
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=363197295]

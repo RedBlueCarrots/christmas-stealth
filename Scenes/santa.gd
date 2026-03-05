@@ -8,11 +8,13 @@ const TELE_DIST = 200
 var saved_vel = Vector2.RIGHT
 var locked_vel = Vector2.RIGHT
 
-var can_tele := true
+var can_tele := false
 var has_bag := false
+var can_rein := true
+var is_santa := true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	position =  Global.respawn
 
 func recal_raycasts():
 	var target = locked_vel.normalized()
@@ -26,9 +28,13 @@ func recal_raycasts():
 
 func _process(delta: float) -> void:
 	$Bag.visible = has_bag
+	$AnimatedSprite2D.visible = is_santa
+	$AnimatedSprite2D2.visible = !is_santa
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	$CollisionShape2D.disabled = !is_santa
+	$CollisionShape2D2.disabled = is_santa
 	var inp_dir =Input.get_axis("left", "right")
 	velocity.x += inp_dir*ACCEL*delta
 	velocity.x*=pow(FRICT, delta)
@@ -37,6 +43,8 @@ func _physics_process(delta: float) -> void:
 	velocity.y += GRAV*delta
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
 		velocity.y = -JUMP
+		if not is_santa:
+			velocity.y = -JUMP*0.6
 	check_anims()
 	move_and_slide()
 	if velocity.length_squared() > 100:
@@ -44,28 +52,39 @@ func _physics_process(delta: float) -> void:
 	var axis = Input.get_vector("left", "right", "jump", "down")
 	if axis != Vector2.ZERO:
 		locked_vel = axis
-	if Input.is_action_just_pressed("teleport"):
+	if Input.is_action_just_pressed("teleport") and is_santa:
 		$Sprite2D.visible = true
 	recal_raycasts()
-	if Input.is_action_just_released("teleport"):
+	if Input.is_action_just_released("teleport") and is_santa:
 		position += $Sprite2D.position
 		$Sprite2D.visible = false
-	if Input.is_action_just_pressed("kidnap"):
+	if Input.is_action_just_pressed("kidnap") and is_santa:
 		for elf in $Kidnap.get_overlapping_bodies():
 			if not has_bag:
 				has_bag = true
+				Global.respawn = position
 				elf.queue_free()
+	if Input.is_action_just_pressed("trans") and can_rein and not has_bag:
+		is_santa = !is_santa
 
 func check_anims():
 	if velocity.x < -30:
 		$AnimatedSprite2D.flip_h = true
+		$AnimatedSprite2D2.flip_h = true
 		$Bag.scale.x = -2
 	if velocity.x > 30:
 		$AnimatedSprite2D.flip_h = false
+		$AnimatedSprite2D2.flip_h = false
 		$Bag.scale.x = 2
 	if not is_on_floor():
 		$AnimatedSprite2D.play("jump")
+		$AnimatedSprite2D2.play("jump")
 	elif abs(velocity.x) > 30:
 		$AnimatedSprite2D.play("run")
+		$AnimatedSprite2D2.play("run")
 	else:
 		$AnimatedSprite2D.play("idle_front")
+		$AnimatedSprite2D2.play("idle_front")
+
+func reset():
+	get_tree().reload_current_scene()

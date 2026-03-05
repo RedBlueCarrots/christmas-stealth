@@ -16,12 +16,16 @@ func update_poly():
 	for rc:RayCast2D in $ViewingArea.get_children():
 		if rc.is_colliding():
 			newpoly.append(rc.get_collision_point()-global_position)
+			if rc.get_collider().is_in_group("Santa") and get_tree() and get_tree().get_first_node_in_group("Santa").has_bag:
+				rc.get_collider().reset()
 		else:
 			newpoly.append(rc.target_position*rc.get_parent().scale)
 	$Polygon2D.set_polygon(newpoly)
-	$Polygon2D.visible = get_tree().get_first_node_in_group("Santa").has_bag
+	$Polygon2D.visible = !get_tree() or get_tree().get_first_node_in_group("Santa").has_bag
 
 
 func _physics_process(delta: float) -> void:
 	super(delta)
 	update_poly()
+	if velocity.length() < 1:
+		velocity.y = -40

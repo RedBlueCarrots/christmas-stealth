@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://c53m1hyx57fxg"]
+
+[ext_resource type="Shader" uid="uid://by8liiphxa113" path="res://jar.gdshader" id="1_f5yra"]
+[ext_resource type="Script" uid="uid://dbl1tnqyiglje" path="res://Scenes/jar.gd" id="1_y2xk5"]
+[ext_resource type="Texture2D" uid="uid://du777bqupxqxf" path="res://Art/jar.png" id="2_y2xk5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p4hh4"]
+shader = ExtResource("1_f5yra")
+shader_parameter/amount_filled = 1.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f5yra"]
+radius = 17.0
+height = 60.0
+
+[node name="Jar" type="Area2D" unique_id=1743281216]
+script = ExtResource("1_y2xk5")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1005585095]
+texture_filter = 1
+material = SubResource("ShaderMaterial_p4hh4")
+scale = Vector2(2, 2)
+texture = ExtResource("2_y2xk5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1073713772]
+shape = SubResource("CapsuleShape2D_f5yra")
