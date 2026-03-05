@@ -3,8 +3,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if Global.respawn == Vector2(2221.0, 516):
-		$Santa.is_santa = false
+	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -13,10 +12,5 @@ func _process(delta: float) -> void:
 
 
 func _on_to_1_top_body_entered(body: Node2D) -> void:
-	Global.respawn = Vector2(52, -95)
-	get_tree().change_scene_to_file("res://Scenes/Room1.tscn")
-
-
-func _on_to_1_top_2_body_entered(body: Node2D) -> void:
-	Global.respawn = Vector2(52, 516)
+	Global.respawn = Vector2(2215.0, -193)
 	get_tree().change_scene_to_file("res://Scenes/Room1.tscn")

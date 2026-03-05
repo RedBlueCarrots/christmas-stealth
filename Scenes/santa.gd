@@ -14,6 +14,8 @@ var can_rein := true
 var is_santa := true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	has_bag = Global.bag
+	is_santa = Global.santae
 	position =  Global.respawn
 
 func recal_raycasts():
@@ -27,7 +29,11 @@ func recal_raycasts():
 	$Sprite2D.position = $Inner.position
 
 func _process(delta: float) -> void:
+	can_tele = Global.magic >= 0.7
+	can_rein = Global.magic >= 0.4 
 	$Bag.visible = has_bag
+	Global.bag = has_bag
+	Global.santae = is_santa
 	$AnimatedSprite2D.visible = is_santa
 	$AnimatedSprite2D2.visible = !is_santa
 
@@ -36,7 +42,10 @@ func _physics_process(delta: float) -> void:
 	$CollisionShape2D.disabled = !is_santa
 	$CollisionShape2D2.disabled = is_santa
 	var inp_dir =Input.get_axis("left", "right")
-	velocity.x += inp_dir*ACCEL*delta
+	var xtra = 1.0
+	if !is_santa:
+		xtra = 1.3
+	velocity.x += inp_dir*ACCEL*delta*xtra
 	velocity.x*=pow(FRICT, delta)
 	if inp_dir == 0.0:
 		velocity.x*=pow(FRICT, delta)
@@ -52,19 +61,19 @@ func _physics_process(delta: float) -> void:
 	var axis = Input.get_vector("left", "right", "jump", "down")
 	if axis != Vector2.ZERO:
 		locked_vel = axis
-	if Input.is_action_just_pressed("teleport") and is_santa:
+	if Input.is_action_just_pressed("teleport") and is_santa and can_tele:
 		$Sprite2D.visible = true
 	recal_raycasts()
-	if Input.is_action_just_released("teleport") and is_santa:
+	if Input.is_action_just_released("teleport") and is_santa and can_tele:
 		position += $Sprite2D.position
 		$Sprite2D.visible = false
-	if Input.is_action_just_pressed("kidnap") and is_santa:
+	if Input.is_action_just_pressed("kidnap"):# and is_santa:
 		for elf in $Kidnap.get_overlapping_bodies():
 			if not has_bag:
 				has_bag = true
 				Global.respawn = position
 				elf.queue_free()
-	if Input.is_action_just_pressed("trans") and can_rein and not has_bag:
+	if Input.is_action_just_pressed("trans") and can_rein:# and not has_bag:
 		is_santa = !is_santa
 
 func check_anims():

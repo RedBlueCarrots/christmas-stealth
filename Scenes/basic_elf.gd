@@ -6,7 +6,7 @@ func _ready() -> void:
 	for i in range(-15, 16):
 		var newr := RayCast2D.new()
 		$ViewingArea.add_child(newr)
-		newr.target_position = Vector2.RIGHT.rotated(deg_to_rad(i*2.2))*275
+		newr.target_position = Vector2.RIGHT.rotated(deg_to_rad(i*2.2))*225
 	update_poly()
 	super()
 

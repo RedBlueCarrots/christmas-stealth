@@ -58,6 +58,9 @@ func _physics_process(delta: float) -> void:
 
 
 func check_anims():
+	if speed == 0:
+		$AnimatedSprite2D.play("idle")
+		return
 	if velocity.x < -10:
 		$AnimatedSprite2D.flip_h = true
 		if has_node("ViewingArea"):
