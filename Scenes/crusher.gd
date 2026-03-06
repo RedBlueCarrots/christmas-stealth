@@ -23,6 +23,14 @@ func crush():
 	newt.start()
 	await newt.timeout
 	$Elf.visible = false
+	if Global.magic <= 0.4:
+		Dialogic.start("transform")
+	elif Global.magic <= 0.7:
+		Dialogic.start("teleport")
+	else:
+		Dialogic.start("win")
+		await Dialogic.timeline_ended
+		get_tree().change_scene_to_file("res://win.tscn")
 
 
 func _on_body_entered(body: Node2D) -> void:

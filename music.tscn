@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dbec7g6epynig"]
+
+[ext_resource type="AudioStream" uid="uid://dadbgi35l1ff3" path="res://Game Jam 3.mp3" id="1_3h6ak"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" unique_id=1426190236]
+stream = ExtResource("1_3h6ak")
+autoplay = true
+
+[node name="Timer" type="Timer" parent="." unique_id=327635358]
+wait_time = 100000.0
+autostart = true

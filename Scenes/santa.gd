@@ -39,6 +39,8 @@ func _process(delta: float) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	if Dialogic.current_timeline != null:
+		return
 	$CollisionShape2D.disabled = !is_santa
 	$CollisionShape2D2.disabled = is_santa
 	var inp_dir =Input.get_axis("left", "right")
@@ -72,6 +74,11 @@ func _physics_process(delta: float) -> void:
 			if not has_bag:
 				has_bag = true
 				Global.respawn = position
+				if Global.first:
+					elf.speed = 0
+					Dialogic.start("kidnap")
+					Global.first = false
+					await Dialogic.timeline_ended
 				elf.queue_free()
 	if Input.is_action_just_pressed("trans") and can_rein:# and not has_bag:
 		is_santa = !is_santa

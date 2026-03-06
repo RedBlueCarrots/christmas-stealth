@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://dp0b778hqf4y8"]
+
+[ext_resource type="Script" uid="uid://bfkb1udx5i3qg" path="res://win.gd" id="1_oiuna"]
+[ext_resource type="PackedScene" uid="uid://brwls7sejwus2" path="res://Scenes/Backrounds/background_1.tscn" id="2_4a3qj"]
+[ext_resource type="Texture2D" uid="uid://dglxn1gi5qp8e" path="res://Art/Santa_all.png" id="3_g38d0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qynjx"]
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_06sxk"]
+font_size = 24
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbxid"]
+atlas = ExtResource("3_g38d0")
+region = Rect2(16, 26, 16, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1n0d2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbxid")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Start" type="Node2D" unique_id=363899627]
+texture_filter = 1
+script = ExtResource("1_oiuna")
+
+[node name="Background1" parent="." unique_id=52199564 instance=ExtResource("2_4a3qj")]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1302201822]
+offset_left = 407.0
+offset_top = 681.0
+offset_right = 589.0
+offset_bottom = 739.0
+
+[node name="Button" type="Button" parent="HBoxContainer" unique_id=832698237]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Play"
+
+[node name="Button2" type="Button" parent="HBoxContainer" unique_id=1366586061]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Exit"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=992854143]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=1106803173]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -178.0
+offset_right = 178.0
+offset_bottom = 105.0
+grow_horizontal = 2
+
+[node name="Label2" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=486573999]
+layout_mode = 2
+text = "Slay Santa Slay!"
+label_settings = SubResource("LabelSettings_qynjx")
+
+[node name="Label3" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=1366644372]
+layout_mode = 2
+text = "Feat. Santa's Sleigh"
+label_settings = SubResource("LabelSettings_06sxk")
+horizontal_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1746519804]
+position = Vector2(487, 462)
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_1n0d2")
+
+[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Button2" to="." method="_on_button_2_pressed"]

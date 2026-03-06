@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://cidsc8ondxuie"]
 
 [ext_resource type="PackedScene" uid="uid://brwls7sejwus2" path="res://Scenes/Backrounds/background_1.tscn" id="1_gdiot"]
+[ext_resource type="Script" uid="uid://cs33fe7qbep35" path="res://Scenes/room_1.gd" id="1_ucp0a"]
 [ext_resource type="Texture2D" uid="uid://djscmpsielxj1" path="res://Art/tiles.png" id="2_08bvw"]
 [ext_resource type="PackedScene" uid="uid://dmfdpuoan6bwc" path="res://Scenes/santa.tscn" id="3_08bvw"]
 [ext_resource type="PackedScene" uid="uid://b52gfnw2lsc6s" path="res://Scenes/basic_elf.tscn" id="4_1kfl4"]
@@ -9,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bc154v6bu6tec" path="res://Scenes/crusher.tscn" id="7_j3utp"]
 [ext_resource type="PackedScene" uid="uid://c53m1hyx57fxg" path="res://Scenes/jar.tscn" id="8_kdje2"]
 [ext_resource type="Script" uid="uid://duvvp8qgt5ibm" path="res://Scenes/to_room_2.gd" id="9_4uh16"]
+[ext_resource type="PackedScene" uid="uid://6r5ohhemy8k0" path="res://pause.tscn" id="11_3pgjm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1kfl4"]
 texture = ExtResource("2_08bvw")
@@ -131,12 +133,14 @@ terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_1kfl4")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kdje2"]
+radius = 136.44412
 
 [node name="Node2D" type="Node2D" unique_id=341271968]
+script = ExtResource("1_ucp0a")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2096376032]
-position = Vector2(1722, 85)
-enabled = false
+position = Vector2(1072, 720)
+zoom = Vector2(6, 6)
 
 [node name="Background1" parent="." unique_id=52199564 instance=ExtResource("1_gdiot")]
 
@@ -213,6 +217,9 @@ position = Vector2(1110, 509)
 [node name="Reindeer7" parent="Reindeer2" unique_id=592347269 instance=ExtResource("6_8issk")]
 position = Vector2(808, 741)
 
+[node name="Reindeer8" parent="Reindeer2" unique_id=1074874311 instance=ExtResource("6_8issk")]
+position = Vector2(1122, 728)
+
 [node name="Crusher" parent="." unique_id=595369680 instance=ExtResource("7_j3utp")]
 position = Vector2(1006, 719)
 
@@ -226,6 +233,7 @@ collision_mask = 128
 script = ExtResource("9_4uh16")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ToRoom2" unique_id=2116321252]
+position = Vector2(-157, -5)
 shape = SubResource("CircleShape2D_kdje2")
 
 [node name="ToRoom3" type="Area2D" parent="." unique_id=400511887]
@@ -234,6 +242,7 @@ collision_layer = 0
 collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ToRoom3" unique_id=793192299]
+position = Vector2(-157, -5)
 shape = SubResource("CircleShape2D_kdje2")
 
 [node name="ToRoom4" type="Area2D" parent="." unique_id=666556127]
@@ -242,7 +251,10 @@ collision_layer = 0
 collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ToRoom4" unique_id=858117712]
+position = Vector2(129, -7)
 shape = SubResource("CircleShape2D_kdje2")
+
+[node name="Pause" parent="." unique_id=1005721035 instance=ExtResource("11_3pgjm")]
 
 [connection signal="body_entered" from="ToRoom2" to="ToRoom2" method="_on_body_entered"]
 [connection signal="body_entered" from="ToRoom3" to="ToRoom2" method="_on_to_room_3_body_entered"]

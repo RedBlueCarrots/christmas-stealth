@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b52gfnw2lsc6s" path="res://Scenes/basic_elf.tscn" id="5_bur1i"]
 [ext_resource type="PackedScene" uid="uid://b2tvoiceuyl3y" path="res://Scenes/magic_elf.tscn" id="6_qrwqm"]
 [ext_resource type="PackedScene" uid="uid://5t2noacxp8y1" path="res://Scenes/reindeer.tscn" id="7_osw5t"]
+[ext_resource type="PackedScene" uid="uid://6r5ohhemy8k0" path="res://pause.tscn" id="8_pwwwv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1kfl4"]
 texture = ExtResource("3_6ofnw")
@@ -129,7 +130,7 @@ terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_1kfl4")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bbr00"]
-radius = 60.530983
+radius = 145.0138
 
 [node name="Room3" type="Node2D" unique_id=341271968]
 script = ExtResource("1_tlfa6")
@@ -191,6 +192,11 @@ position = Vector2(1123, 125)
 speed = 0
 trained_sequence = "[[(1898.003, 556.9337), \"L\"], [(1836.001, 556.9252), \"R\"]]"
 
+[node name="BasicElf12" parent="Elves" unique_id=1329074485 instance=ExtResource("5_bur1i")]
+position = Vector2(1223, 25)
+speed = 0
+trained_sequence = "[[(1898.003, 556.9337), \"L\"], [(1836.001, 556.9252), \"R\"]]"
+
 [node name="BasicElf2" parent="Elves" unique_id=1883944621 instance=ExtResource("5_bur1i")]
 position = Vector2(780, 548)
 speed = 90
@@ -240,7 +246,7 @@ collision_layer = 0
 collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="To1Top" unique_id=709963877]
-position = Vector2(-67, -200)
+position = Vector2(-165, -187)
 shape = SubResource("CircleShape2D_bbr00")
 
 [node name="To1Top2" type="Area2D" parent="." unique_id=1003293468]
@@ -251,6 +257,8 @@ collision_mask = 128
 [node name="CollisionShape2D" type="CollisionShape2D" parent="To1Top2" unique_id=1958288936]
 position = Vector2(2304, 214)
 shape = SubResource("CircleShape2D_bbr00")
+
+[node name="Pause" parent="." unique_id=1005721035 instance=ExtResource("8_pwwwv")]
 
 [connection signal="body_entered" from="To1Top" to="." method="_on_to_1_top_body_entered"]
 [connection signal="body_entered" from="To1Top2" to="." method="_on_to_1_top_2_body_entered"]
